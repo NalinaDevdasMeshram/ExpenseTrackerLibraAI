@@ -3,14 +3,19 @@ const app = express();
 import connectDB from "./config/db.js";
 import dotenv from "dotenv";
 dotenv.config();
-console.log(process.env.MONGO_URI);
+import userRoute from "./routes/userRoute.js";
+import expenseRoute from "./routes/expenseRoute.js";
+import dashboardRoute from "./routes/dashboard.js";
 //connect to the database
 connectDB();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!!");
-  res.end();
-});
+//middleware
+app.use(express.json());
+
+//routes
+app.use("/api/auth/", userRoute);
+app.use("/api/expenses/", expenseRoute);
+app.use("/api/dashboard/", dashboardRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
