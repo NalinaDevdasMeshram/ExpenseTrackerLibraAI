@@ -11,7 +11,7 @@ import {
 import { protect } from "../middleware/authencation.js";
 
 router.post("/add", protect, addExpense);
-router.get("/get", getExpense);
+router.get("/get", protect, getExpense);
 router.put("/:id", updateExpense);
 router.delete("/:id", deleteExpense);
 router.get("/search", searchExpenses);

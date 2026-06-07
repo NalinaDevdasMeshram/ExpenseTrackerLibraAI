@@ -6,6 +6,7 @@ dotenv.config();
 import userRoute from "./routes/userRoute.js";
 import expenseRoute from "./routes/expenseRoute.js";
 import dashboardRoute from "./routes/dashboard.js";
+
 //connect to the database
 connectDB();
 
