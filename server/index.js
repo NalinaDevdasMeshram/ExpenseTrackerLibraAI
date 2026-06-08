@@ -3,6 +3,7 @@ const app = express();
 import connectDB from "./config/db.js";
 import dotenv from "dotenv";
 dotenv.config();
+import router from "./routes/userRoute.js";
 import userRoute from "./routes/userRoute.js";
 import expenseRoute from "./routes/expenseRoute.js";
 import dashboardRoute from "./routes/dashboard.js";

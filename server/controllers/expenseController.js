@@ -1,7 +1,6 @@
 import router from "../routes/expenseRoute.js";
 import expenseModel from "../models/expenseModel.js";
 import userModel from "../models/userModel.js";
-import { use } from "react";
 
 //add expense
 export const addExpense = async (req, res) => {
@@ -33,7 +32,7 @@ export const getExpense = async (req, res) => {
     const userId = req.user._id;
     console.log(userId);
 
-    const expenses = await expenseModel.findOne({ userId });
+    const expenses = await expenseModel.find({ userId });
 
     res
       .status(200)
@@ -52,7 +51,7 @@ export const updateExpense = async (req, res) => {
       req.body,
       {
         new: true,
-        newValidators: true,
+        runValidators: true,
       },
     );
     if (!updateExpense) {
@@ -71,12 +70,12 @@ export const updateExpense = async (req, res) => {
 //delete expense
 export const deleteExpense = async (req, res) => {
   try {
-    const { Id } = req.params;
-    const deleteUser = await userModel.findOneAndDelete(
-      { _id: Id, userId: req.user._id },
-      { isDeleted: true },
-    );
-
+    const { id } = req.params;
+    const deleteUser = await userModel.findOneAndDelete({
+      _id: id,
+      userId: req.user._id,
+    });
+    console.log(deleteUser);
     if (!deleteUser) {
       res.status(404).json({ success: false, message: "user not found.." });
     }
