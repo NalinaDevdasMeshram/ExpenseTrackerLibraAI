@@ -12,9 +12,9 @@ import { protect } from "../middleware/authencation.js";
 
 router.post("/add", protect, addExpense);
 router.get("/get", protect, getExpense);
-router.put("/:id", updateExpense);
-router.delete("/:id", deleteExpense);
-router.get("/search", searchExpenses);
-router.get("/filter", filterExpenses);
+router.put("/:id", protect, updateExpense);
+router.delete("/:id", protect, deleteExpense);
+router.get("/search", protect, searchExpenses);
+router.get("/filter", protect, filterExpenses);
 
 export default router;
